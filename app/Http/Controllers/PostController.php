@@ -9,17 +9,16 @@ class PostController extends Controller
 {
     public function index()
     {
+        //dd(Post::factory()->create());
+        $posts=Post::all();
 
-    $posts=Post::all();
-   
-    return view('Posts.index', compact('posts'));
+        return view('Posts.index', compact('posts'));
     }
 
     public function create()
     {
         return view('Posts.create');
     }
-
 
     public function show(Post $post)
     {
