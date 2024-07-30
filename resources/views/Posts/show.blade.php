@@ -8,6 +8,9 @@
             <li>Title: {{ $post->title}}</li>
             <li>Content: {{ $post->content}}</li>
             <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
+            <p>
+            <a href="{{ route('posts.delete', $post->id) }}">Delete Post</a>
+            </p>
     </ul>
    
 @endsection

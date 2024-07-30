@@ -67,6 +67,13 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+     public function delete(Post $post)
+    {
+        return view('posts.delete', compact('post'));
+    }
+
+    
     public function destroy(Post $post)
     {
         $post->delete();
