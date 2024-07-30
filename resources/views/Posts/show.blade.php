@@ -7,6 +7,7 @@
             <li>ID: {{ $post->id}} </li>
             <li>Title: {{ $post->title}}</li>
             <li>Content: {{ $post->content}}</li>
+            <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
     </ul>
    
 @endsection

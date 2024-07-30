@@ -10,20 +10,19 @@ class PostController extends Controller
     public function index()
     {
         //dd(Post::factory()->create());
-        $posts=Post::all();
+        $posts = Post::all();
 
-        return view('Posts.index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
     {
-        return view('Posts.create');
+        return view('posts.create');
     }
 
     public function show(Post $post)
     {
-
-        return view('Posts.show', compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -31,36 +30,47 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       
         $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
         Post::create($request->all());
+
         return redirect()->route('posts.index');
     }
+
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+    
+      
+        $post->update($request->only(['title', 'content']));
+    
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }
