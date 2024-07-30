@@ -3,7 +3,7 @@
 @section('content')
     <h1>Blog Posts</h1>
     <a href="{{route('posts.create') }}" class="btn-primary">Create Post</a>
- {{--
+ 
     <ul>
         @foreach ($posts as $post)
             <li>
@@ -11,5 +11,5 @@
             </li>
         @endforeach
     </ul>
-    --}}
+    
 @endsection
