@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+//use Illuminate\Support\Facades\DateTime;
+use DateTime;
 
 class PostController extends Controller
 {
     public function index()
     {
-       // dd(Post::factory()->create());
-        $posts = Post::all();
-
-        return view('posts.index', compact('posts'));
+        //dd(Post::factory()->create());
+       // dd(auth::user());
+       // $posts=Post::all();
+       $posts=Auth::user()->posts;
+      
+        return view('Posts.index', compact('posts'));
     }
 
     public function create()

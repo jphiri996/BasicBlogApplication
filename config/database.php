@@ -15,7 +15,7 @@ return [
     |
     */
 
-   'default' => env('MONGO_DB_CONNECTION', 'sqlite'),
+    'default' => env('MONGO_DB_CONNECTION', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,6 @@ return [
             'dsn' => env('MONGO_DB_CONNECTION').'://'.env('MONGO_DB_HOST').':'.env('MONGO_DB_PORT'),
             'database' => env('MONGO_DB_DATABASE')
         ],
-        
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
