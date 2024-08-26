@@ -15,6 +15,10 @@ class User extends Authenticatable
     //protected $connection = 'mongodb';
     use  HasFactory, Notifiable, HasApiTokens;
 
+    const ROLE_USER = 'user';
+    const ROLE_AUTHOR = 'author';
+    const ROLE_ADMIN = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,5 +53,10 @@ class User extends Authenticatable
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
 }
