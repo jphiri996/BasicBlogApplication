@@ -18,9 +18,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('posts', PostController::class);
-Route::get('posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+
+
+
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('posts', PostController::class);
+    Route::get('posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
+    Route::get('/home', [PostController::class, 'index'])->name('home');
+});
+
+Route::get('/test', [PostController::class, 'test']);
+
+
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
