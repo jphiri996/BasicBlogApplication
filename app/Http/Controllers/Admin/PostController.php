@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +15,7 @@ class PostController extends Controller
         $posts = Post::all();
        //$posts=Auth::user()->posts;
 
-        return view('posts.index', compact('posts'));
+        return view('admin.index', compact('posts'));
     }
 
     public function create()
