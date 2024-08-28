@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +36,8 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
-    Route::resource('users', 'Admin\UserController');
-    Route::resource('posts', 'Admin\PostController');
+    Route::resource('users', AdminUserController::class);
+    Route::resource('posts', AdminPostController::class);
 });
 
 Route::get('/test', [PostController::class, 'test']);

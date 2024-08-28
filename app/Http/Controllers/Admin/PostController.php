@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
     {
        // dd(Post::factory()->create());
-       // $posts = Post::all();
-       $posts=Auth::user()->posts;
+        $posts = Post::all();
+       //$posts=Auth::user()->posts;
 
         return view('posts.index', compact('posts'));
     }
@@ -24,10 +23,10 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        if (Auth::id() !=$post->user_id) {
-           abort(403);
-        }
-
+        if (Auth::user()->role !== 'admin') {
+            abort(403);
+         }
+ 
         return view('posts.show', compact('post'));
     }
 
