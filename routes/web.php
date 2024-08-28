@@ -32,12 +32,14 @@ Route::get('/home', function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('posts', PostController::class);
     Route::get('posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
+    Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.edit');
    // Route::get('/home', [PostController::class, 'index'])->name('home');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('users', AdminUserController::class);
     Route::resource('posts', AdminPostController::class);
+    Route::get('users/{user}/delete', [AdminUserController::class, 'delete'])->name('users.delete');
 });
 
 Route::get('/test', [PostController::class, 'test']);
