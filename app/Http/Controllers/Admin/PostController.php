@@ -20,7 +20,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('admin.create');
     }
 
     public function show(Post $post)
@@ -29,7 +29,7 @@ class PostController extends Controller
             abort(403);
          }
  
-        return view('posts.show', compact('post'));
+        return view('admin.show', compact('post'));
     }
 
     /**
@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        return view('admin.edit', compact('post'));
     }
 
     /**
@@ -77,7 +77,7 @@ class PostController extends Controller
 
      public function delete(Post $post)
     {
-        return view('posts.delete', compact('post'));
+        return view('admin.delete', compact('post'));
     }
 
     
