@@ -30,7 +30,12 @@ Route::get('/home', function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('posts', PostController::class);
     Route::get('posts/{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
-    Route::get('/home', [PostController::class, 'index'])->name('home');
+   // Route::get('/home', [PostController::class, 'index'])->name('home');
+});
+
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::resource('users', 'Admin\UserController');
+    Route::resource('posts', 'Admin\PostController');
 });
 
 Route::get('/test', [PostController::class, 'test']);
